@@ -374,7 +374,7 @@ pub fn dimension_geometry_with(d: &Dimension, st: &DimStyle, dimscale: f64, font
         let corners: Vec<Vec2> =
             [(-hw, -bottom), (hw, -bottom), (hw, top), (-hw, top)].into_iter().map(|(px, py)| text_mid + x * px + y * py).collect();
         for (a, b) in corners.iter().zip(corners.iter().cycle().skip(1)) {
-            g.dim(vec![*a, *b]);
+            g.text_mark(vec![*a, *b]);
         }
     }
     g.value = decode_value(&cadcraft_fonts::plain_mtext(&g.mtext));

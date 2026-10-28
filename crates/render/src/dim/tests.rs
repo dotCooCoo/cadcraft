@@ -199,6 +199,25 @@ fn negative_dimgap_draws_a_frame_around_the_text() {
 }
 
 #[test]
+fn the_dimgap_frame_is_drawn_over_a_text_background() {
+    let d = lin((0.0, 0.0), (10.0, 0.0), (0.0, 5.0), 0.0);
+    let g = dimension_geometry(
+        &d,
+        &st_with(|s| {
+            s.text_gap = -0.09;
+            s.text_fill = 1;
+        }),
+        1.0,
+    );
+    assert_eq!(g.text_fill.len(), 4);
+    // The four sides are text marks, which are drawn after the background.
+    let n = g.lines.len();
+    for i in n - 4..n {
+        assert!(g.text_marks.contains(&i), "{:?}", g.text_marks);
+    }
+}
+
+#[test]
 fn the_frame_turns_with_the_text() {
     let d = lin((0.0, 0.0), (0.0, 10.0), (5.0, 0.0), std::f64::consts::FRAC_PI_2);
     let g = dimension_geometry(
