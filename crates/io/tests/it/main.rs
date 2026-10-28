@@ -14,6 +14,7 @@ mod dim_block_text;
 mod dim_marks_roundtrip;
 mod dim_text_frame;
 mod dimstyle_vars_roundtrip;
+mod dimtfill_roundtrip;
 mod drafting_spacing;
 #[cfg(not(target_arch = "wasm32"))]
 mod dwg_header_vars;
